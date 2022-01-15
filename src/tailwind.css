@@ -7,3 +7,19 @@
     font-family: "Poppins", sans-serif;
   }
 }
+@layer utilities {
+  .clip-path-star {
+    clip-path: polygon(
+      50% 0%,
+      65% 30%,
+      98% 35%,
+      74% 59%,
+      79% 91%,
+      50% 74%,
+      21% 91%,
+      26% 59%,
+      2% 35%,
+      36% 30%
+    );
+  }
+}
