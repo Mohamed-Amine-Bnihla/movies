@@ -19,7 +19,6 @@ const routes = [
       component: ()=>  import(/* webpackChunkName: "tv" */ '@/views/Tv.vue'),
     props:true,
   }
-  
  
 ]
 

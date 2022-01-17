@@ -18,7 +18,7 @@ const mutations ={
         state.movie = data;
     },
     SET_VIDEOS(state,data){
-        console.log(data)
+        
         state.videos = data.filter((video) => video.site.toLowerCase() == "youtube").slice(0,2)
     },
     SET_CREDITS(state,data){
