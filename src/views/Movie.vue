@@ -8,7 +8,7 @@
             :alt="checkTitle(movie.title, movie.original_title)"
           />
         </div>
-        <div class="movie-info">
+        <div class="movie-info w-full">
           <h2 class="my-5 font-extrabold text-4xl text-sky-800 uppercase">
             {{ checkTitle(movie.title, movie.original_title) }}
           </h2>
@@ -69,6 +69,9 @@
               {{ movie.original_language }}
             </div>
           </div>
+          <div class="my-10 relative h-52">
+            <credits-view :actors="credits"></credits-view>
+          </div>
           <div
             class="
               movie-video
@@ -99,25 +102,35 @@
   </section>
 </template>
 <script>
-import { computed } from "vue";
+import { computed, defineAsyncComponent } from "vue";
 import { useStore } from "vuex";
 import { checkImage, checkTitle } from "../mixins/index";
+
+const CreditsView = defineAsyncComponent(() =>
+  import("@/components/Credits.vue")
+);
 export default {
   props: ["id"],
   name: "movieView",
+  components: {
+    CreditsView,
+  },
   setup(props) {
     const store = useStore();
 
     const movie = computed(() => store.getters["movie/movie"]);
     const videos = computed(() => store.getters["movie/videos"]);
+    const credits = computed(() => store.getters["movie/credits"]);
 
     store.dispatch("movie/fetchMovie", { id: props.id });
-    console.log(movie);
+    store.dispatch("movie/fetchVideos", { id: props.id });
+    store.dispatch("movie/fetchCredits", { id: props.id });
     return {
       movie,
       videos,
       checkImage,
       checkTitle,
+      credits,
     };
   },
 };

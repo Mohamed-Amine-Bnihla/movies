@@ -18,6 +18,12 @@ const routes = [
     name:"tv",
       component: ()=>  import(/* webpackChunkName: "tv" */ '@/views/Tv.vue'),
     props:true,
+  },
+    {
+    path:"/credits/:id",
+    name:"credits",
+      component: ()=>  import(/* webpackChunkName: "credits" */ '@/components/Credits.vue'),
+       props:true,
   }
  
 ]

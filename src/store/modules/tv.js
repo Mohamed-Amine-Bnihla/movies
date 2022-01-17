@@ -3,12 +3,14 @@ import api from "@/api/api"
 const state = {
     tv:{},
      videos:[],
+     credits:[]
 
 }
 
 const getters = {
     tv : state => state.tv,
-    videos:state => state.videos
+    videos:state => state.videos,
+    credits:state=>state.credits
 }
 const mutations ={
     SET_TV(state,data){
@@ -18,6 +20,14 @@ const mutations ={
 
         state.videos = data.filter((video)=> video.site.toLowerCase() == "youtube").slice(0,2);
       
+    },
+     SET_CREDITS(state,data){
+        console.log(data);
+      const cast = data.cast.slice(0,10);
+      const crew = data.crew.find((el)=> el.job.toLowerCase() == "director" || el.job.toLowerCase() == "producer"  ) ?? null;
+      
+      state.credits = crew != null ? [...cast,crew] : [...cast];
+    
     }
  
 }
@@ -35,6 +45,14 @@ const actions= {
     
     })
     },
+     fetchCredits({commit},{id}){
+         api.get(`tv/${id}/credits`)
+    .then(({data})=>{
+
+        commit('SET_CREDITS',data); 
+      
+     })
+    }
 
 }
 

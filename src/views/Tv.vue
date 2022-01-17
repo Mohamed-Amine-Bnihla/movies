@@ -67,6 +67,9 @@
               {{ tv.original_language }}
             </div>
           </div>
+          <div class="my-10 relative h-52">
+            <credits-view :actors="credits"></credits-view>
+          </div>
           <div
             class="
               tv-video
@@ -97,24 +100,34 @@
   </section>
 </template>
 <script>
-import { computed } from "vue";
+import { computed, defineAsyncComponent } from "vue";
 import { useStore } from "vuex";
 import { checkImage, checkName } from "../mixins/index";
+const CreditsView = defineAsyncComponent(() =>
+  import("@/components/Credits.vue")
+);
 export default {
   props: ["id"],
   name: "tvView",
+  components: {
+    CreditsView,
+  },
   setup(props) {
     const store = useStore();
 
     const tv = computed(() => store.getters["tv/tv"]);
     const videos = computed(() => store.getters["tv/videos"]);
+    const credits = computed(() => store.getters["tv/credits"]);
+    console.log(credits);
     store.dispatch("tv/fetchTv", { id: props.id });
+    store.dispatch("tv/fetchCredits", { id: props.id });
 
     return {
       tv,
       videos,
       checkImage,
       checkName,
+      credits,
     };
   },
 };
