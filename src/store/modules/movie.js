@@ -25,7 +25,7 @@ const mutations ={
         console.log(data);
       const cast = data.cast.slice(0,10);
       const crew = data.crew.find((el)=> el.job.toLowerCase() == "director" || el.job.toLowerCase() == "producer"  );
-      state.credits = [...cast,crew];
+      state.credits = crew != null ? [...cast,crew] : [...cast];
     
     }
  

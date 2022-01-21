@@ -8,7 +8,7 @@
         >Movies</router-link
       >
       <ul class="flex gap-5">
-        <li>
+        <!--  <li>
           <a href="#" class="text-white hover:text-gray-200 text-base">Home</a>
         </li>
         <li>
@@ -18,7 +18,7 @@
           <a href="#" class="text-white hover:text-gray-200 text-base"
             >Contact</a
           >
-        </li>
+        </li> -->
       </ul>
     </div>
   </header>
