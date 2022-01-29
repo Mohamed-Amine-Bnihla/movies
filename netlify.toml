@@ -1,0 +1,4 @@
+[context.production]
+  publish = "dist/"
+  command = "npm run build"
+  environment = { VUE_APP_APITOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMDgzNzJkNzZhZjYxYmQ4MjY1YmMxMThhOTRlODA2MyIsInN1YiI6IjYxZGI0OGM1NDUzOWQwMDA0MjM0M2I5NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.YdEXgt9f4nOrdwvef6AQY9hgP_R8zj52d0_c7qdr25A", VUE_APP_APIURL = "https://api.themoviedb.org/3" }
